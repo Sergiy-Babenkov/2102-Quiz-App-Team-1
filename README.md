@@ -16,4 +16,4 @@ The current implementation consists of a Test Runner which runs the tests cases 
 
 For now we support
 
-@Test - descrobes this is a test 
+@Test - describes this is a test 
