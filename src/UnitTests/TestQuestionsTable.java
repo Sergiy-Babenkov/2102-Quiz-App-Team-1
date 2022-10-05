@@ -2,10 +2,9 @@ package UnitTests;
 
 import org.testng.annotations.Test;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
+
+import static org.testng.Assert.assertEquals;
 
 public class TestQuestionsTable {
 
@@ -33,7 +32,7 @@ public class TestQuestionsTable {
             //STEP 3: Insert a test row in the score table
 
             stmt = conn.createStatement();
-            String sql = "INSERT INTO  questions " +
+            String sql = "INSERT INTO questions " +
                     "(question,a,b,c,d,e,answer,explanation) " +
                     "VALUES ('What is the largest Desert?', 'Gobi', 'Sahara', 'Kalahari', 'Patagonian', 'Great Sandy', 'Sahara', 'The Sahara is a desert on the African continent. With an area of 9,200,000 square kilometres.' ); ";
             stmt.executeUpdate(sql);
@@ -42,21 +41,31 @@ public class TestQuestionsTable {
             /* */
 
             // STEP 4 Select the row
-            //stmt = conn.createStatement();
+            stmt = conn.createStatement();
 
-            //sql = "SELECT * FROM score WHERE usr='Sergiy Babenkov';";
-            //ResultSet rs = stmt.executeQuery(sql);
-            //while (rs.next()) {
-            //String questionsTotal = rs.getString("questions_total");
-            //int TotalInt = Integer.parseInt(questionsTotal);
-            //assertEquals(TotalInt, 100);
-            //}
+            sql = "SELECT * FROM questions WHERE answer='Sahara';";
+            ResultSet rs = stmt.executeQuery(sql);
+
+            while (rs.next()) {
+                String aStr = rs.getString("a");
+                assertEquals(aStr, "Gobi");
+                String bStr = rs.getString("b");
+                assertEquals(bStr, "Sahara");
+                String cStr = rs.getString("c");
+                assertEquals(cStr, "Kalahari");
+                String dStr = rs.getString("d");
+                assertEquals(dStr, "Patagonian");
+                String eStr = rs.getString("e");
+                assertEquals(eStr, "Great Sandy");
+                String questionStr = rs.getString("question");
+                assertEquals(questionStr, "What is the largest Desert?");
+            }
 
             //STEP 5: Remove the test row
-            //sql = "DELETE FROM score WHERE usr='Sergiy Babenkov';";
-            //stmt.executeUpdate(sql);
+            sql = "DELETE FROM questions WHERE answer='Sahara';";
+            stmt.executeUpdate(sql);
 
-            //System.out.println("Deleted the test rows from the table...");
+            System.out.println("Deleted the test rows from the table...");
 
             //Clean Up Environment
 
