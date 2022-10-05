@@ -1,11 +1,10 @@
-package Unit_Tests;
+package UnitTests;
 
 import org.testng.annotations.Test;
 
 import java.sql.*;
 
 import static org.testng.Assert.assertEquals;
-import static org.testng.Assert.assertNotEquals;
 
 public class TestScoreTable {
 
@@ -33,17 +32,17 @@ public class TestScoreTable {
             //STEP 3: Insert a test row in the score table
 
             stmt = conn.createStatement();
-            String sql =  "INSERT INTO  score " +
+            String sql = "INSERT INTO  score " +
                     "(usr,questions_total,questions_answered,questions_correct) " +
                     "VALUES ('Sergiy Babenkov', 100, -5, 2); ";
             stmt.executeUpdate(sql);
 
-            sql =  "INSERT INTO  score " +
+            sql = "INSERT INTO  score " +
                     "(usr,questions_total,questions_answered,questions_correct) " +
                     "VALUES ('Nadia Brown', 50, 45, 30); ";
             stmt.executeUpdate(sql);
 
-            sql =  "INSERT INTO  score " +
+            sql = "INSERT INTO  score " +
                     "(usr,questions_total,questions_answered,questions_correct) " +
                     "VALUES ('Matthew Dunn', 26, 14, 5); ";
             stmt.executeUpdate(sql);
@@ -103,10 +102,10 @@ public class TestScoreTable {
             }
 
             //STEP 5: Remove the test row
-            sql = "DELETE FROM score WHERE usr='Sergiy Babenkov';" + "DELETE FROM score WHERE usr='Nadia Brown';" + "DELETE FROM score WHERE usr='Matthew Dunn';" ;
+            sql = "DELETE FROM score WHERE usr='Sergiy Babenkov';" + "DELETE FROM score WHERE usr='Nadia Brown';" + "DELETE FROM score WHERE usr='Matthew Dunn';";
             stmt.executeUpdate(sql);
 
-            System.out.println("Deleted the test row from the table...");
+            System.out.println("Deleted the test rows from the table...");
 
             //Clean Up Environment
 
