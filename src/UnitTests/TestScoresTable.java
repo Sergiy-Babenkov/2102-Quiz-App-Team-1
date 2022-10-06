@@ -6,7 +6,7 @@ import java.sql.*;
 
 import static org.testng.Assert.assertEquals;
 
-public class TestScoreTable {
+public class TestScoresTable {
 
     static final String JDBC_DRIVER = "org.h2.Driver";
     static final String DB_URL = "jdbc:h2:~/test";

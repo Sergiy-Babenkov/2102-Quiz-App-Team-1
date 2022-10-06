@@ -1,6 +1,11 @@
-import java.sql.*;
+package Resources;
 
-public class Main {
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+import java.sql.Statement;
+
+public class Questions {
     // JDBC driver name and database URL
     static final String JDBC_DRIVER = "org.h2.Driver";
     static final String DB_URL = "jdbc:h2:~/test";
@@ -12,34 +17,23 @@ public class Main {
     public static void main(String[] args) {
         Connection conn = null;
         Statement stmt = null;
-        try {
+        try{
             // STEP 1: Register JDBC driver
             Class.forName(JDBC_DRIVER);
-
             // STEP 2: Open a connection
-            System.out.println("Connecting to database...");
+            System.out.println("Connecting to a selected database...");
             conn = DriverManager.getConnection(DB_URL,USER,PASS);
-
-            // STEP 3: Execute a query
             System.out.println("Connected database successfully...");
+            // STEP 3: Execute a query
             stmt = conn.createStatement();
-            String sql = "SELECT * FROM questions";
-            ResultSet rs = stmt.executeQuery(sql);
-
-            // STEP 4: Extract data from result set
-            while(rs.next()) {
-                // Retrieve by column name
-                int id  = rs.getInt("id");
-                String first = rs.getString("question");
-                String last = rs.getString("answer");
-
-                // Display values
-                System.out.print("ID: " + id);
-                System.out.print("\nQuestion: " + first);
-                System.out.println("\nAnswer: " + last);
-            }
-            // STEP 5: Clean-up environment
-            rs.close();
+            String sql = "INSERT INTO questions " +
+                    "(question,a,b,c,d,e,answer,explanation) " +
+                    "VALUES ('What is the largest Desert?', 'Gobi', 'Sahara', 'Kalahari', 'Patagonian', 'Great Sandy', 'Sahara', 'The Sahara is a desert on the African continent. With an area of 9,200,000 square kilometres.' ); ";
+            stmt.executeUpdate(sql);
+            System.out.println("Inserted records into the table...");
+            // STEP 4: Clean-up environment
+            stmt.close();
+            conn.close();
         } catch(SQLException se) {
             // Handle errors for JDBC
             se.printStackTrace();
