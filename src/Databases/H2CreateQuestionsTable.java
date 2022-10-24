@@ -37,13 +37,7 @@ public class H2CreateQuestionsTable {
             String sql = "CREATE TABLE questions " +
                     "(id INTEGER not NULL AUTO_INCREMENT, " +
                     " question varchar(1024), " +
-                    " a varchar(1024), " +
-                    " b varchar(1024), " +
-                    " c varchar(1024), " +
-                    " d varchar(1024), " +
-                    " e varchar(1024), " +
                     " Answer varchar(1024), " +
-                    " explanation varchar(1024), " +
                     " PRIMARY KEY ( id ))";
             stmt.executeUpdate(sql);
             System.out.println("Created table in given database...");

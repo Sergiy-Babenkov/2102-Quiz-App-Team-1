@@ -1,57 +1,33 @@
 package Resources;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
-import java.sql.Statement;
-
 public class Questions {
-    // JDBC driver name and database URL
-    static final String JDBC_DRIVER = "org.h2.Driver";
-    static final String DB_URL = "jdbc:h2:~/test";
 
-    //  Database credentials
-    static final String USER = "sa";
-    static final String PASS = "";
+    private String question;
+    private String answer;
 
-    public static void main(String[] args) {
-        Connection conn = null;
-        Statement stmt = null;
-        try{
-            // STEP 1: Register JDBC driver
-            Class.forName(JDBC_DRIVER);
-            // STEP 2: Open a connection
-            System.out.println("Connecting to a selected database...");
-            conn = DriverManager.getConnection(DB_URL,USER,PASS);
-            System.out.println("Connected database successfully...");
-            // STEP 3: Execute a query
-            stmt = conn.createStatement();
-            String sql = "INSERT INTO questions " +
-                    "(question,a,b,c,d,e,answer,explanation) " +
-                    "VALUES ('What is the largest Desert?', 'Gobi', 'Sahara', 'Kalahari', 'Patagonian', 'Great Sandy', 'Sahara', 'The Sahara is a desert on the African continent. With an area of 9,200,000 square kilometres.' ); ";
-            stmt.executeUpdate(sql);
-            System.out.println("Inserted records into the table...");
-            // STEP 4: Clean-up environment
-            stmt.close();
-            conn.close();
-        } catch(SQLException se) {
-            // Handle errors for JDBC
-            se.printStackTrace();
-        } catch(Exception e) {
-            // Handle errors for Class.forName
-            e.printStackTrace();
-        } finally {
-            // finally block used to close resources
-            try {
-                if(stmt!=null) stmt.close();
-            } catch(SQLException se2) {
-            } // nothing we can do
-            try {
-                if(conn!=null) conn.close();
-            } catch(SQLException se) {
-                se.printStackTrace();
-            } // end finally try
-        } // end try
-        System.out.println("Goodbye!");
+    public Questions(String q, String a) {
+        question = q;
+        answer = a;
     }
+
+    public String getQuestion() {
+        return question;
+    }
+
+    public void setQuestion(String q) {
+        question = q;
+    }
+
+    public String getAnswer() {
+        return answer;
+    }
+
+    public void setAnswer(String a) {
+        answer = a;
+    }
+
+    public String toString() {
+        return "[]";
+    }
+
 }
