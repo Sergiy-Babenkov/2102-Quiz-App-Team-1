@@ -7,8 +7,9 @@ import org.restlet.Server;
 import org.restlet.data.Protocol;
 import org.restlet.resource.Get;
 import org.restlet.resource.ServerResource;
-public class FirstServerResource extends ServerResource {
+public class ServerClass extends ServerResource {
     private static String json_string;
+
     public static void main(String[] args) throws Exception {
 
         GsonBuilder builder = new GsonBuilder();
@@ -20,10 +21,11 @@ public class FirstServerResource extends ServerResource {
         json_string = gson.toJson(one_q);
 
         // Create the HTTP server and listen on port 8182
-        new Server(Protocol.HTTP, 8182, FirstServerResource.class).start();
+        new Server(Protocol.HTTP, 8182, ServerClass.class).start();
     }
+
     @Get
     public String toString() {
-        return json_string;
+        return  json_string;
     }
 }
