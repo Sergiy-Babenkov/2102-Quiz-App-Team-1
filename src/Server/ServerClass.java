@@ -7,6 +7,7 @@ import org.restlet.Server;
 import org.restlet.data.Protocol;
 import org.restlet.resource.Get;
 import org.restlet.resource.ServerResource;
+
 public class ServerClass extends ServerResource {
     private static String json_string;
 
@@ -23,9 +24,8 @@ public class ServerClass extends ServerResource {
         // Create the HTTP server and listen on port 8182
         new Server(Protocol.HTTP, 8182, ServerClass.class).start();
     }
-
     @Get
     public String toString() {
-        return  json_string;
+        return json_string;
     }
 }
