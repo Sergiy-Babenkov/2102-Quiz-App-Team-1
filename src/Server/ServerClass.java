@@ -15,7 +15,6 @@ import static Databases.H2Commands.*;
 public class ServerClass extends ServerResource {
     private static String json_string;
 
-
     public static void main(String[] args) throws Exception {
         // Create the HTTP server and listen on port 8182
         new Server(Protocol.HTTP, 8182, ServerClass.class).start();
