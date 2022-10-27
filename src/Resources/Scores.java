@@ -1,11 +1,4 @@
 package Resources;
-
-/*
-
-Start of Singleton Score file
-
-*/
-
 public class Scores {
 
     private static Scores single_instance = null;
