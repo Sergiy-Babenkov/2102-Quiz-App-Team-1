@@ -13,7 +13,13 @@ The current implementation includes a React user interface.
 ### Overview
 
  
-1. Questions from a csv file are added into the H2 database are.  
+1. Questions from a csv file are added into the H2 database are. This can be accomplished in the Constants class within the Data package. 
+
+   ```package Data;
+   public class constants {
+    public static final String CsvFileLocation = "/Users/sergiybabenkov/IdeaProjects/2102-Quiz-App-Team-1/src/Data/Questions.csv"; 
+    }```
+    
 2. To view the questions three servers will need to be running prior to running the app. 
    + Start Restlet Server in the main class
    + Then start Proxy Server
