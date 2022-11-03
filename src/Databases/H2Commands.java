@@ -23,7 +23,6 @@ public class H2Commands {
             Class.forName(JDBC_DRIVER);
 
             //STEP 2: Open a connection
-            System.out.println("Connecting to database...");
             conn = DriverManager.getConnection(DB_URL, USER, PASS);
         } catch (Exception e) {
             System.err.println("Error! in connectTo H2()");

@@ -7,7 +7,7 @@ import java.sql.ResultSet;
 import static Databases.H2Commands.*;
 import static org.testng.Assert.assertEquals;
 
-public class TestQuestionsTable {
+public class TestQuestionTable {
     @Test
     public void Test1() {
         try {

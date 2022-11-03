@@ -1,11 +1,11 @@
 package Resources;
 
-public class Questions {
+public class Question {
 
     private String question;
     private String answer;
 
-    public Questions(String q, String a) {
+    public Question(String q, String a) {
         question = q;
         answer = a;
     }

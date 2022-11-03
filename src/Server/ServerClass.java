@@ -1,6 +1,7 @@
 package Server;
 
-import Resources.Questions;
+import Resources.AllQuestions;
+import Resources.Question;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import org.restlet.Server;
@@ -8,48 +9,30 @@ import org.restlet.data.Protocol;
 import org.restlet.resource.Get;
 import org.restlet.resource.ServerResource;
 
-import java.sql.ResultSet;
+import java.util.ArrayList;
 
-import static Databases.H2Commands.*;
 
 public class ServerClass extends ServerResource {
-    private static String json_string;
 
-    public static void ServerStart() {
-        try {
-            // Create the HTTP server and listen on port 8182
-            new Server(Protocol.HTTP, 8182, ServerClass.class).start();
+    private static final GsonBuilder builder = new GsonBuilder();
+    private static final Gson gson = builder.create();
+    private static int count = 0;
+    private static ArrayList<Question> allQuestionsAnswers = null;
 
-            connectToH2();
-            System.out.println("Connected to the database...");
-
-            stmt = conn.createStatement();
-            String sql = "SELECT * FROM Questions ORDER BY RAND() Limit 1";
-            ResultSet rs = stmt.executeQuery(sql);
-
-            String question = null;
-            String answer = null;
-            while (rs.next()) {
-                int id = rs.getInt("id");
-                question = rs.getString("question");
-                answer = rs.getString("answer");
-
-                GsonBuilder builder = new GsonBuilder();
-                builder.setPrettyPrinting();
-                Gson gson = builder.create();
-                Questions one_q = new Questions(question, answer);
-
-                json_string = gson.toJson(one_q);
-            }
-            System.out.println(json_string);
-            disconnectFromH2();
-            System.out.println("Disconnected from the database...");
-        } catch (Exception e) {
-            System.err.println("Error! in connectTo H2()");
-        }
+    public static void ServerStart() throws Exception {
+        builder.setPrettyPrinting();
+        AllQuestions allQuestions = new AllQuestions();
+        allQuestionsAnswers = allQuestions.getAllQuestionsAnswers();
+        // Create the HTTP server and listen on port 8182
+        new Server(Protocol.HTTP, 8182, ServerClass.class).start();
     }
+
     @Get
     public String toString() {
-        return json_string;
+        count++;
+        count = count % allQuestionsAnswers.size();
+        Question questionAnswer = allQuestionsAnswers.get(count);
+        return gson.toJson(questionAnswer);
     }
+
 }
