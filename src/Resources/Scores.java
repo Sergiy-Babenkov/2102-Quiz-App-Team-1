@@ -1,4 +1,5 @@
 package Resources;
+
 public class Scores {
 
     private static Scores single_instance = null;
