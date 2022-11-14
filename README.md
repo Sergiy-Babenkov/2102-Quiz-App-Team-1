@@ -3,12 +3,12 @@
 ### Scope
 
 The following feature allows users to interact with the quiz app. A user can click on a button to generate a new question and choose 
-from a list of answers.
+from a list of answers. They can also add said question to a database called "bookmarks" and visit it at anytime to answer saved questions. 
 
 
 ### Current Implementation
 
-The current implementation includes a React user interface.
+The current implementation includes a React user interface and bookmark database.
 
 ### Overview
 
@@ -31,7 +31,8 @@ The current implementation includes a React user interface.
 
 1. The tests from the TestQuestionsTable class ensure that the questions are associated with the correct answer 
 2. The tests from the TestQuizTakerTable class ensure that the users are updated with the correct first and last name.
-3. The test from the  TestScoresTable class ensures that the scores are updated for the associated user. 
+3. The tests from the TestScoresTable class ensures that the scores are updated for the associated user. 
+4. The tests from the TestBookmarkTab class ensures that the bookmark dictionary is enabled/disabled and stores questions correctly. 
 
 ### Running the App
 1. Clone the repo 
