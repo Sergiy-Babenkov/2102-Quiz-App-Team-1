@@ -1,7 +1,14 @@
-import static Server.ServerClass.ServerStart;
+import static Server.ServerClass.main;
+
+import Server.ServerClass;
 
 public class Main {
     public static void main(String[] args) {
-        ServerStart();
+        try {
+            ServerClass.main(args);
+        } catch (Exception e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
     }
 }
