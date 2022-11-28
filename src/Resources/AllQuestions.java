@@ -15,9 +15,10 @@ public class AllQuestions {
             stmt = conn.createStatement();
             ResultSet rs = stmt.executeQuery(sql);
             while (rs.next()) {
+                int id = rs.getInt("id");
                 String actualQuestion = rs.getString("question");
                 String actualAnswer = rs.getString("answer");
-                Question question = new Question(actualQuestion, actualAnswer);
+                Question question = new Question(id, actualQuestion, actualAnswer);
                 questionArrayList.add(question);
             }
             disconnectFromH2();

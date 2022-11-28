@@ -2,12 +2,14 @@ package Resources;
 
 public class Question {
 
+    private final int id;
     private String question;
     private String answer;
 
-    public Question(String q, String a) {
-        question = q;
-        answer = a;
+    public Question(int id, String q, String a) {
+        this.id = id;
+        this.question = q;
+        this.answer = a;
     }
 
     public String getQuestion() {

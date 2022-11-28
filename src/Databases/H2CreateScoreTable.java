@@ -9,16 +9,13 @@ public class H2CreateScoreTable {
             //STEP 3: Execute a query
             System.out.println("Creating table in given database...");
             stmt = conn.createStatement();
-            String sql = "CREATE TABLE   score " +
+            String sql = "CREATE TABLE   scores " +
                     "(id INTEGER not NULL AUTO_INCREMENT, " +
-                    " usr varchar(255), " +
-                    " questions_total INTEGER, " +
-                    " questions_answered INTEGER, " +
-                    " questions_correct INTEGER, " +
+                    " total INTEGER, " +
+                    " correct INTEGER, " +
+                    " wrong INTEGER, " +
                     " PRIMARY KEY ( id ))";
             stmt.executeUpdate(sql);
-            System.out.println("Created table in given database...");
-
             // STEP 4: Clean-up environment
             disconnectFromH2();
         } catch (Exception e) {
